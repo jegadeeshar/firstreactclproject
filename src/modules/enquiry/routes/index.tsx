@@ -1,9 +1,10 @@
-import type { RouteObject } from 'react-router-dom';
+import SampleEnquiry from '@/modules/enquiry/pages/SampleEnquiry';
+import type { AppRoute } from '@/core/types';
 
-const enquiryRoutes: Array<RouteObject> = [
+const enquiryRoutes: AppRoute[] = [
   {
     path: 'enquiry',
-    element: <div>Enquiry Module</div>,
+    element: <SampleEnquiry />,
   },
 ];
 
