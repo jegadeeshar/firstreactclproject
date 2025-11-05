@@ -10,7 +10,7 @@ import FormWrapper from '@/core/layout/FormWrapper';
 
 const SampleEnquiry: React.FC = () => {
   const methods = useForm<EnquiryDetail>({
-    defaultValues: { email: '', mobileNo: '', branchId: '1' },
+    defaultValues: { email: '', mobileNo: '' },
     mode: 'onBlur',
   });
 
