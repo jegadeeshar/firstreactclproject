@@ -22,7 +22,9 @@ const CdfAutoComplete: React.FC<CdfDropdownPropsType> = ({
       render={({ field, fieldState }) => (
         <Autocomplete
           {...field}
-          getOptionLabel={(option) => option.label}
+          value={field.value || null}
+          getOptionLabel={(option) => option?.label || ''}
+          isOptionEqualToValue={(option, value) => option.id === value?.id}
           onChange={(_, newValue) => {
             field.onChange(newValue);
             if (handleChange) handleChange(newValue);

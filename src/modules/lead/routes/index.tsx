@@ -5,6 +5,7 @@ const leadRoutes: AppRoute[] = [
   {
     path: 'lead/create',
     element: <ProductDetails />,
+    layout: 'main',
   },
 ];
 

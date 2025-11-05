@@ -11,17 +11,7 @@ const ProductDetails: React.FC = () => {
     defaultValues: {
       customerType: '',
       pan: '',
-      product: '',
-      branch: '',
-      loanType: '',
-      subLoanType: '',
-      sourceType: '',
-      sourceName: '',
-      propertyType: '',
-      propertyUsage: '',
-      loanPurpose: '',
       amount: 0,
-      language: '',
     },
     mode: 'onBlur',
   });
