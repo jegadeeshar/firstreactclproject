@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Box, type BoxProps, Typography, IconButton, styled } from '@mui/material';
 import type { CdfUploadPreviewProps } from '@core/types';
-import VisibilityIcon from '@core/assets/icons/VisibilityIcon.svg';
-import DeleteIcon from '@core/assets/icons/DeleteIcon.svg';
+import VisibilityIcon from '@core/assets/Icons/VisibilityIcon.svg';
+import DeleteIcon from '@core/assets/Icons/DeleteIcon.svg';
 import { getThumbnailIcon } from '@core/utils/commonUtils';
 import CdfPreview from '@cdf-components/preview/CdfPreview';
 

@@ -9,8 +9,8 @@ vi.mock('@core/utils/commonUtils', () => ({
 }));
 
 // Mock icons
-vi.mock('@core/assets/icons/VisibilityIcon.svg', () => ({ default: 'mock-visibility-icon.svg' }));
-vi.mock('@core/assets/icons/DeleteIcon.svg', () => ({ default: 'mock-delete-icon.svg' }));
+vi.mock('@core/assets/Icons/VisibilityIcon.svg', () => ({ default: 'mock-visibility-icon.svg' }));
+vi.mock('@core/assets/Icons/DeleteIcon.svg', () => ({ default: 'mock-delete-icon.svg' }));
 
 describe('CdfUploadPreview', () => {
   const mockOnDelete = vi.fn();

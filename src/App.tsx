@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router-dom';
-import routes from './routes';
+import routes from '@core/routes';
 import logger from '@core/utils/loggerUtils';
 
 function App() {
