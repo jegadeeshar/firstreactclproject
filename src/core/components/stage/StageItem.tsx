@@ -91,7 +91,8 @@ const StageItem: FC<StageItemProps> = ({
             {hasExpandableContent &&
               (stage.status === STAGE_STATUS.IN_PROGRESS ||
                 stage.status === STAGE_STATUS.COMPLETED) && (
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <>
+                  {/* With Accordion */}
                   <CdfLinkAccordion expandedText="View Less" collapsedText="More Details">
                     <Box sx={{ mt: 1 }}>
                       <CdfStepper
@@ -102,7 +103,7 @@ const StageItem: FC<StageItemProps> = ({
                       />
                     </Box>
                   </CdfLinkAccordion>
-                </Box>
+                </>
               )}
           </Box>
 

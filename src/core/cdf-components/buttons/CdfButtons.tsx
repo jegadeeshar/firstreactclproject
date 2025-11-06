@@ -5,19 +5,7 @@ import type { CdfButtonProps, CdfIconButtonProps } from '@/core/types';
 // Icon Button Component
 export const CdfIconButton: React.FC<CdfIconButtonProps> = ({ icon, label, ...props }) => {
   return (
-    <Button
-      startIcon={icon}
-      variant="outlined"
-      color="primary"
-      sx={{
-        textTransform: 'none',
-        fontSize: '0.875rem',
-        padding: '4px 12px',
-        borderRadius: '8px',
-        ...props.sx
-      }}
-      {...props}
-    >
+    <Button startIcon={icon} variant="outlined" color="primary" {...props}>
       {label}
     </Button>
   );
