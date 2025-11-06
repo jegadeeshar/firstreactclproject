@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, Paper, Divider } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DynamicGrid from '@/core/components/DynamicGrid';
 import CdfUploadPreview from '@/core/cdf-components/upload/CdfUploadPreview';
-import { CdfAccordion } from '@/core/cdf-components/accordion/CdfAccordion';
 import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -155,69 +154,53 @@ const PropertyDetailsView: React.FC = () => {
       </Box>
 
       <Box ref={contentRef}>
-        <CdfAccordion
-          defaultExpanded
-          summary={
-            <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
-              PROPERTY DETAILS
-            </Typography>
-          }
-          details={
-            <>
-              <Box sx={{ mb: 3 }}>
-                <DynamicGrid data={currentProperty.propertyDetailsData} />
-              </Box>
+        <Paper sx={{ p: 3, mb: 2 }}>
+          <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293', mb: 2 }}>
+            PROPERTY DETAILS
+          </Typography>
+          <Divider sx={{ mb: 3 }} />
+          <Box sx={{ mb: 3 }}>
+            <DynamicGrid data={currentProperty.propertyDetailsData} />
+          </Box>
 
-              <Box sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
-                  <Grid size={{ xs: 12, sm: 4 }}>
-                    <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>
-                      Uploaded Doc
-                    </Typography>
-                    <CdfUploadPreview
-                      onDelete={() => {}}
-                      previewUrl=""
-                      title="Aadhaar"
-                      type="JPEG"
-                    />
-                  </Grid>
-                </Grid>
-              </Box>
-            </>
-          }
-        />
-
-        <CdfAccordion
-          sx={{ mt: 2 }}
-          summary={
-            <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
-              BOUNDARY DETAILS
-            </Typography>
-          }
-          details={<DynamicGrid data={currentProperty.boundaryDetailsData} />}
-        />
-
-        <CdfAccordion
-          sx={{ mt: 2, mb: 4 }}
-          summary={
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
-                COLLATERAL ADDRESS
-              </Typography>
-            </Box>
-          }
-          details={
-            <>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20 }} />
-                <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                  INITIATE(DUE DILIGENCE CHECK)
+          <Box sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12, sm: 4 }}>
+                <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>
+                  Uploaded Doc
                 </Typography>
-              </Box>
-              <DynamicGrid data={currentProperty.collateralAddressData} />
-            </>
-          }
-        />
+                <CdfUploadPreview
+                  onDelete={() => {}}
+                  previewUrl=""
+                  title="Aadhaar"
+                  type="JPEG"
+                />
+              </Grid>
+            </Grid>
+          </Box>
+        </Paper>
+
+        <Paper sx={{ p: 3, mb: 2 }}>
+          <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293', mb: 2 }}>
+            BOUNDARY DETAILS
+          </Typography>
+          <Divider sx={{ mb: 3 }} />
+          <DynamicGrid data={currentProperty.boundaryDetailsData} />
+        </Paper>
+
+        <Paper sx={{ p: 3, mb: 4 }}>
+          <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293', mb: 2 }}>
+            COLLATERAL ADDRESS
+          </Typography>
+          <Divider sx={{ mb: 3 }} />
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+            <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20 }} />
+            <Typography variant="body2" sx={{ fontWeight: 500 }}>
+              INITIATE(DUE DILIGENCE CHECK)
+            </Typography>
+          </Box>
+          <DynamicGrid data={currentProperty.collateralAddressData} />
+        </Paper>
       </Box>
     </Box>
   );
