@@ -139,7 +139,7 @@ const PropertyDetailsView: React.FC = () => {
   const currentProperty = properties[activeProperty];
 
   return (
-    <Box ref={containerRef} sx={{ p: 3 }}>
+    <Box ref={containerRef}>
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {properties.map((_, index) => (
@@ -198,7 +198,7 @@ const PropertyDetailsView: React.FC = () => {
         />
 
         <CdfAccordion
-          sx={{ mt: 2 }}
+          sx={{ mt: 2, mb: 4 }}
           summary={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
