@@ -1,0 +1,14 @@
+{
+    "appTitle": "LAP",
+    "domain": "LAP",
+    "branch": "Branch",
+    "email": "Email ID",
+    "mobile": "Mobile Number",
+    "button": {
+        "submit": "Submit",
+        "saveAndNext": "Submit",
+        "cancel": "Cancel",
+        "reset": "Reset",
+        "close": "Close"
+    }
+}
