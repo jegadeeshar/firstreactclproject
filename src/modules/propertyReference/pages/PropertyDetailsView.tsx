@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Button } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Box, Typography, Button } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DynamicGrid from '@/core/components/DynamicGrid';
 import CdfUploadPreview from '@/core/cdf-components/upload/CdfUploadPreview';
+import { CdfAccordion } from '@/core/cdf-components/accordion/CdfAccordion';
 import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -152,76 +152,69 @@ const PropertyDetailsView: React.FC = () => {
       </Box>
 
       <Box ref={contentRef}>
-        <Accordion defaultExpanded>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="property-details-content"
-            id="property-details-header"
-          >
+        <CdfAccordion
+          defaultExpanded
+          summary={
             <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
               PROPERTY DETAILS
             </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Box sx={{ mb: 3 }}>
-              <DynamicGrid data={currentProperty.propertyDetailsData} />
-            </Box>
+          }
+          details={
+            <>
+              <Box sx={{ mb: 3 }}>
+                <DynamicGrid data={currentProperty.propertyDetailsData} />
+              </Box>
 
-            <Box sx={{ mt: 3 }}>
-              <Grid container spacing={2}>
-                <Grid size={{ xs: 12, sm: 4 }}>
-                  <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>
-                    Uploaded Doc
-                  </Typography>
-                  <CdfUploadPreview
-                    onDelete={() => {}}
-                    previewUrl=""
-                    title="Aadhaar"
-                    type="JPEG"
-                  />
+              <Box sx={{ mt: 3 }}>
+                <Grid container spacing={2}>
+                  <Grid size={{ xs: 12, sm: 4 }}>
+                    <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>
+                      Uploaded Doc
+                    </Typography>
+                    <CdfUploadPreview
+                      onDelete={() => {}}
+                      previewUrl=""
+                      title="Aadhaar"
+                      type="JPEG"
+                    />
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Box>
-          </AccordionDetails>
-        </Accordion>
+              </Box>
+            </>
+          }
+        />
 
-        <Accordion sx={{ mt: 2 }}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="boundary-details-content"
-            id="boundary-details-header"
-          >
+        <CdfAccordion
+          sx={{ mt: 2 }}
+          summary={
             <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
               BOUNDARY DETAILS
             </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <DynamicGrid data={currentProperty.boundaryDetailsData} />
-          </AccordionDetails>
-        </Accordion>
+          }
+          details={<DynamicGrid data={currentProperty.boundaryDetailsData} />}
+        />
 
-        <Accordion sx={{ mt: 2 }}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="collateral-address-content"
-            id="collateral-address-header"
-          >
+        <CdfAccordion
+          sx={{ mt: 2 }}
+          summary={
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
                 COLLATERAL ADDRESS
               </Typography>
             </Box>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-              <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20 }} />
-              <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                INITIATE(DUE DILIGENCE CHECK)
-              </Typography>
-            </Box>
-            <DynamicGrid data={currentProperty.collateralAddressData} />
-          </AccordionDetails>
-        </Accordion>
+          }
+          details={
+            <>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20 }} />
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                  INITIATE(DUE DILIGENCE CHECK)
+                </Typography>
+              </Box>
+              <DynamicGrid data={currentProperty.collateralAddressData} />
+            </>
+          }
+        />
       </Box>
     </Box>
   );
