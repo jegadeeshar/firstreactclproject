@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Box, Typography, Accordion, AccordionSummary, AccordionDetails, Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DynamicGrid from '@/core/components/DynamicGrid';
 import CdfUploadPreview from '@/core/cdf-components/upload/CdfUploadPreview';
 import { Grid } from '@mui/material';
@@ -35,7 +34,7 @@ type PropertyData = {
 
 const PropertyDetailsView: React.FC = () => {
   const [activeProperty, setActiveProperty] = useState(0);
-  const [properties, setProperties] = useState<PropertyData[]>([
+  const [properties] = useState<PropertyData[]>([
     {
       propertyDetailsData: {
         loanOnSameCollateral: 'Yes',
@@ -78,70 +77,67 @@ const PropertyDetailsView: React.FC = () => {
         yearsAtCity: '-',
       },
     },
+    {
+      propertyDetailsData: {
+        loanOnSameCollateral: 'No',
+        propertyUsage: 'Rented',
+        propertyType: 'Apartment',
+        propertyTitle: 'Leasehold',
+        propertyOwnership: 'Joint',
+        propertyOwner: 'John Doe',
+        customerName: 'John Doe',
+        typeOfDocument: 'Lease Agreement',
+        buyerName: 'Sample Buyer',
+        sellerName: 'Sample Seller',
+        propertyTypeAsPerTheAboveDeed: 'Flat',
+      },
+      boundaryDetailsData: {
+        north: 'Road',
+        east: 'Park',
+        south: 'Building',
+        west: 'Commercial Area',
+        areaOfProperty: '1200',
+        bua: '1000',
+        buaInSqFt: '1000',
+        approvedPlanAvailable: 'No',
+        anyAdditionalDocGivenForValuation: 'Floor Plan',
+        isItAPurchaseTransaction: 'No',
+        nameOfProposedPropertyOwner: 'Jane Smith',
+        nameOfPresentPropertyOwner: 'John Doe',
+        propertyLatDetails: '12.9716',
+        propertyLongDetails: '77.5946',
+      },
+      collateralAddressData: {
+        collateralId: '789012',
+        addressLine1: '45, MG Road, Koramangala, Bangalore',
+        addressLine2: '45, MG Road, Koramangala, Bangalore',
+        landmark: 'Near Metro Station',
+        pincode: '560034',
+        city: 'Bangalore',
+        state: 'Karnataka',
+        yearsAtAddress: '5',
+        yearsAtCity: '10',
+      },
+    },
   ]);
 
   const contentRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (contentRef.current) {
-      contentRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (tabsRef.current) {
+      window.scrollTo({
+        top: tabsRef.current.offsetTop - 20,
+        behavior: 'smooth',
+      });
     }
   }, [activeProperty]);
-
-  const handleAddProperty = () => {
-    setProperties([
-      ...properties,
-      {
-        propertyDetailsData: {
-          loanOnSameCollateral: '',
-          propertyUsage: '',
-          propertyType: '',
-          propertyTitle: '',
-          propertyOwnership: '',
-          propertyOwner: '',
-          customerName: '',
-          typeOfDocument: '',
-          buyerName: '',
-          sellerName: '',
-          propertyTypeAsPerTheAboveDeed: '',
-        },
-        boundaryDetailsData: {
-          north: '',
-          east: '',
-          south: '',
-          west: '',
-          areaOfProperty: '',
-          bua: '',
-          buaInSqFt: '',
-          approvedPlanAvailable: '',
-          anyAdditionalDocGivenForValuation: '',
-          isItAPurchaseTransaction: '',
-          nameOfProposedPropertyOwner: '',
-          nameOfPresentPropertyOwner: '',
-          propertyLatDetails: '',
-          propertyLongDetails: '',
-        },
-        collateralAddressData: {
-          collateralId: '',
-          addressLine1: '',
-          addressLine2: '',
-          landmark: '',
-          pincode: '',
-          city: '',
-          state: '',
-          yearsAtAddress: '',
-          yearsAtCity: '',
-        },
-      },
-    ]);
-    setActiveProperty(properties.length);
-  };
 
   const currentProperty = properties[activeProperty];
 
   return (
     <Box sx={{ p: 3 }}>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 3, justifyContent: 'space-between' }}>
+      <Box ref={tabsRef} sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {properties.map((_, index) => (
             <PropertyTabButton
@@ -153,13 +149,6 @@ const PropertyDetailsView: React.FC = () => {
             </PropertyTabButton>
           ))}
         </Box>
-        <Button
-          startIcon={<AddCircleOutlineIcon />}
-          onClick={handleAddProperty}
-          sx={{ textTransform: 'none' }}
-        >
-          Add
-        </Button>
       </Box>
 
       <Box ref={contentRef}>
