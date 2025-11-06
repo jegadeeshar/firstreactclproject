@@ -1,11 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Typography, Button } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DynamicGrid from '@/core/components/DynamicGrid';
 import CdfUploadPreview from '@/core/cdf-components/upload/CdfUploadPreview';
 import { CdfAccordion } from '@/core/cdf-components/accordion/CdfAccordion';
 import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
+const ScrollableContainer = styled('div')(({ theme }) => ({
+  height: '100%',
+  overflowY: 'auto',
+  padding: theme.spacing(3),
+  backgroundColor: theme.palette.background.default,
+}));
 
 const PropertyTabButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'active',
@@ -139,9 +146,9 @@ const PropertyDetailsView: React.FC = () => {
   const currentProperty = properties[activeProperty];
 
   return (
-    <Box ref={containerRef}>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+    <ScrollableContainer ref={containerRef}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {properties.map((_, index) => (
             <PropertyTabButton
               key={index}
@@ -151,10 +158,10 @@ const PropertyDetailsView: React.FC = () => {
               Property {index + 1}
             </PropertyTabButton>
           ))}
-        </Box>
-      </Box>
+        </div>
+      </div>
 
-      <Box ref={contentRef}>
+      <div ref={contentRef}>
         <CdfAccordion
           defaultExpanded
           summary={
@@ -164,11 +171,11 @@ const PropertyDetailsView: React.FC = () => {
           }
           details={
             <>
-              <Box sx={{ mb: 3 }}>
+              <div style={{ marginBottom: '24px' }}>
                 <DynamicGrid data={currentProperty.propertyDetailsData} />
-              </Box>
+              </div>
 
-              <Box sx={{ mt: 3 }}>
+              <div style={{ marginTop: '24px' }}>
                 <Grid container spacing={2}>
                   <Grid size={{ xs: 12, sm: 4 }}>
                     <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>
@@ -182,7 +189,7 @@ const PropertyDetailsView: React.FC = () => {
                     />
                   </Grid>
                 </Grid>
-              </Box>
+              </div>
             </>
           }
         />
@@ -200,26 +207,26 @@ const PropertyDetailsView: React.FC = () => {
         <CdfAccordion
           sx={{ mt: 2, mb: 4 }}
           summary={
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
                 COLLATERAL ADDRESS
               </Typography>
-            </Box>
+            </div>
           }
           details={
             <>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
                 <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20 }} />
                 <Typography variant="body2" sx={{ fontWeight: 500 }}>
                   INITIATE(DUE DILIGENCE CHECK)
                 </Typography>
-              </Box>
+              </div>
               <DynamicGrid data={currentProperty.collateralAddressData} />
             </>
           }
         />
-      </Box>
-    </Box>
+      </div>
+    </ScrollableContainer>
   );
 };
 
