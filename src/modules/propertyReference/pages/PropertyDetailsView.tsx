@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Typography, Button, Divider } from '@mui/material';
+import { Box, Typography, Button, Paper, Divider } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DynamicGrid from '@/core/components/DynamicGrid';
 import CdfUploadPreview from '@/core/cdf-components/upload/CdfUploadPreview';
@@ -138,9 +138,9 @@ const PropertyDetailsView: React.FC = () => {
   const currentProperty = properties[activeProperty];
 
   return (
-    <>
-      <div ref={containerRef} style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+    <Box ref={containerRef}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {properties.map((_, index) => (
             <PropertyTabButton
               key={index}
@@ -150,20 +150,20 @@ const PropertyDetailsView: React.FC = () => {
               Property {index + 1}
             </PropertyTabButton>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
 
-      <div ref={contentRef}>
-        <div style={{ marginBottom: '16px' }}>
+      <Box ref={contentRef}>
+        <Paper sx={{ p: 3, mb: 2 }}>
           <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293', mb: 2 }}>
             PROPERTY DETAILS
           </Typography>
           <Divider sx={{ mb: 3 }} />
-          <div style={{ marginBottom: '24px' }}>
+          <Box sx={{ mb: 3 }}>
             <DynamicGrid data={currentProperty.propertyDetailsData} />
-          </div>
+          </Box>
 
-          <div style={{ marginTop: '24px' }}>
+          <Box sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid size={{ xs: 12, sm: 4 }}>
                 <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>
@@ -177,32 +177,32 @@ const PropertyDetailsView: React.FC = () => {
                 />
               </Grid>
             </Grid>
-          </div>
-        </div>
+          </Box>
+        </Paper>
 
-        <div style={{ marginBottom: '16px' }}>
+        <Paper sx={{ p: 3, mb: 2 }}>
           <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293', mb: 2 }}>
             BOUNDARY DETAILS
           </Typography>
           <Divider sx={{ mb: 3 }} />
           <DynamicGrid data={currentProperty.boundaryDetailsData} />
-        </div>
+        </Paper>
 
-        <div style={{ marginBottom: '32px' }}>
+        <Paper sx={{ p: 3, mb: 4 }}>
           <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293', mb: 2 }}>
             COLLATERAL ADDRESS
           </Typography>
           <Divider sx={{ mb: 3 }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
             <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20 }} />
             <Typography variant="body2" sx={{ fontWeight: 500 }}>
               INITIATE(DUE DILIGENCE CHECK)
             </Typography>
-          </div>
+          </Box>
           <DynamicGrid data={currentProperty.collateralAddressData} />
-        </div>
-      </div>
-    </>
+        </Paper>
+      </Box>
+    </Box>
   );
 };
 
