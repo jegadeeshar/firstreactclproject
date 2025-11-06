@@ -46,12 +46,11 @@ const StyledTab = styled(Tab, {
 
 // ---------- Component ----------
 
-const CdfPillTabs: React.FC<CdfPillTabsProps> = ({ tabs, initialValue = 0, onChange }) => {
+const CdfPillTabs: React.FC<CdfPillTabsProps> = ({ tabs, initialValue = 0 }) => {
   const [activeTab, setActiveTab] = React.useState(initialValue);
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
-    onChange?.(newValue);
   };
 
   return (
