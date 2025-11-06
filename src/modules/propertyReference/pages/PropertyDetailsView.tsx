@@ -4,7 +4,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DynamicGrid from '@/core/components/DynamicGrid';
 import CdfUploadPreview from '@/core/cdf-components/upload/CdfUploadPreview';
 import { CdfAccordion } from '@/core/cdf-components/accordion/CdfAccordion';
-import CdfTabs from '@/core/cdf-components/tabs/CdfTabs';
+import CdfPillTabs from '@/core/cdf-components/tabs/CdfPillTabs';
 import { Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -22,6 +22,7 @@ type PropertyData = {
 };
 
 const PropertyDetailsView: React.FC = () => {
+  const [activeProperty, setActiveProperty] = useState(0);
   const [properties] = useState<PropertyData[]>([
     {
       propertyDetailsData: {
@@ -110,6 +111,7 @@ const PropertyDetailsView: React.FC = () => {
   ]);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const currentProperty = properties[activeProperty];
 
   const renderPropertyContent = (property: PropertyData) => (
     <>
@@ -179,15 +181,18 @@ const PropertyDetailsView: React.FC = () => {
     </>
   );
 
-  const tabs = properties.map((property, index) => ({
-    label: `Property ${index + 1}`,
-    value: `property-${index}`,
-    content: renderPropertyContent(property),
-  }));
+  const tabLabels = properties.map((_, index) => `Property ${index + 1}`);
 
   return (
     <ScrollableContainer ref={containerRef}>
-      <CdfTabs tabs={tabs} defaultValue="property-0" />
+      <CdfPillTabs
+        tabs={tabLabels}
+        initialValue={activeProperty}
+        onChange={(value) => setActiveProperty(value)}
+      />
+      <div style={{ marginTop: '24px' }}>
+        {renderPropertyContent(currentProperty)}
+      </div>
     </ScrollableContainer>
   );
 };
