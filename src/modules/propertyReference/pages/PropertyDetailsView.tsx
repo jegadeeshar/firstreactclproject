@@ -122,12 +122,15 @@ const PropertyDetailsView: React.FC = () => {
   ]);
 
   const contentRef = useRef<HTMLDivElement>(null);
-  const tabsRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (tabsRef.current) {
+    if (containerRef.current) {
+      const elementPosition = containerRef.current.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - 80;
+
       window.scrollTo({
-        top: tabsRef.current.offsetTop - 20,
+        top: offsetPosition,
         behavior: 'smooth',
       });
     }
@@ -136,8 +139,8 @@ const PropertyDetailsView: React.FC = () => {
   const currentProperty = properties[activeProperty];
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box ref={tabsRef} sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+    <Box ref={containerRef} sx={{ p: 3 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {properties.map((_, index) => (
             <PropertyTabButton
