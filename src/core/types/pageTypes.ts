@@ -86,6 +86,7 @@ export interface CdfIconButtonProps extends ButtonProps {
 export interface CdfPillTabsProps {
   tabs: string[];
   initialValue?: number;
+  onChange?: (value: number) => void;
 }
 export interface CdfLinkButtonPropsType {
   label: string; // Button text
