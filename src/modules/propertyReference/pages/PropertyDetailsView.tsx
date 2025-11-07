@@ -133,85 +133,89 @@ const PropertyDetailsView: React.FC = () => {
 
   return (
     <ScrollableContainer ref={containerRef}>
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {properties.map((_, index) => (
-            <PropertyTabButton
-              key={index}
-              active={activeProperty === index}
-              onClick={() => setActiveProperty(index)}
-            >
-              Property {index + 1}
-            </PropertyTabButton>
-          ))}
-        </div>
+      {/* <div style={{ display: 'flex', alignItems: 'center', marginBottom: '24px' }}> */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        {properties.map((_, index) => (
+          <PropertyTabButton
+            key={index}
+            active={activeProperty === index}
+            onClick={() => setActiveProperty(index)}
+          >
+            Property {index + 1}
+          </PropertyTabButton>
+        ))}
       </div>
+      {/* </div> */}
 
-      <div>
-        <CdfAccordion
-          defaultExpanded
-          summary={
-            <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
-              PROPERTY DETAILS
-            </Typography>
-          }
-          details={
-            <>
-              <div style={{ marginBottom: '24px' }}>
-                <DynamicGrid data={currentProperty.propertyDetailsData} />
-              </div>
+      {/* <div> */}
+      <CdfAccordion
+        defaultExpanded
+        summary={
+          <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
+            PROPERTY DETAILS
+          </Typography>
+        }
+        details={
+          <>
+            {/* <div style={{ marginBottom: '24px' }}> */}
+            <DynamicGrid data={currentProperty.propertyDetailsData} />
+            {/* </div> */}
 
-              <div style={{ marginTop: '24px' }}>
-                <Grid container spacing={2}>
-                  <Grid size={{ xs: 12, sm: 4 }}>
-                    <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>
-                      Uploaded Doc
-                    </Typography>
-                    <CdfUploadPreview
-                      onDelete={() => {}}
-                      previewUrl=""
-                      title="Aadhaar"
-                      type="JPEG"
-                    />
-                  </Grid>
-                </Grid>
-              </div>
-            </>
-          }
-        />
+            {/* <div style={{ marginTop: '24px' }}> */}
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12, sm: 4 }}>
+                <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5 }}>
+                  Uploaded Doc
+                </Typography>
+                <CdfUploadPreview
+                  onDelete={() => {}}
+                  previewUrl="https://media.assettype.com/outlookmoney/2025-08-18/vw8vxlhj/PVC-Aadhaar-card.png?w=801&auto=format%2Ccompress&fit=max&format=webp&dpr=1.0"
+                  title="Aadhaar"
+                  type="JPEG"
+                />
+              </Grid>
+            </Grid>
+            {/* </div> */}
+          </>
+        }
+      />
 
-        <CdfAccordion
-          sx={{ mt: 2 }}
-          summary={
-            <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
-              BOUNDARY DETAILS
-            </Typography>
-          }
-          details={<DynamicGrid data={currentProperty.boundaryDetailsData} />}
-        />
+      <CdfAccordion
+        defaultExpanded
+        sx={{ mt: 2 }}
+        summary={
+          <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
+            BOUNDARY DETAILS
+          </Typography>
+        }
+        details={<DynamicGrid data={currentProperty.boundaryDetailsData} />}
+      />
 
-        <CdfAccordion
-          sx={{ mt: 2, mb: 4 }}
-          summary={
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
-                COLLATERAL ADDRESS
+      <CdfAccordion
+        defaultExpanded
+        sx={{ mt: 2, mb: 4 }}
+        summary={
+          // <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Typography variant="h6" sx={{ fontWeight: 600, color: '#105293' }}>
+            COLLATERAL ADDRESS
+          </Typography>
+          // </div>
+        }
+        details={
+          <>
+            <div
+              style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}
+            >
+              <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20 }} />
+              <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                INITIATE(DUE DILIGENCE CHECK)
               </Typography>
             </div>
-          }
-          details={
-            <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-                <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20 }} />
-                <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                  INITIATE(DUE DILIGENCE CHECK)
-                </Typography>
-              </div>
-              <DynamicGrid data={currentProperty.collateralAddressData} />
-            </>
-          }
-        />
-      </div>
+            <DynamicGrid data={currentProperty.collateralAddressData} />
+          </>
+        }
+      />
+      {/* </div> */}
     </ScrollableContainer>
   );
 };
